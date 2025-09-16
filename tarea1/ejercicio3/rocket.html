@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 3</title>
+  
+    <style>
+        .cohete {
+            width: 300px;
+            height: 400px;
+            background-color: rgb(255, 255, 255);
+            margin: 50px;
+            position: relative;
+        }
+
+        .triangulo1 {
+            width: 0px;
+            height: 0px;
+            border-bottom: 50px solid rgb(58, 47, 211);
+            border-left: 40px solid white;
+            border-right: 40px solid white;
+            position: absolute;
+            top: 8%;
+            left: 30%;
+            z-index: 1;
+        }
+
+        .base {
+            width: 80px;
+            height: 150px;
+            background-color: rgb(201, 44, 17);
+            position: absolute;
+            top: 20%;
+            left: 30%;
+            z-index: 1;
+        }
+
+        .ventana1 {
+            width: 20px;
+            height: 20px;
+            background-color: rgb(218, 214, 23);
+            position: absolute;
+            border-radius: 50%;
+            top: 22%;
+            left: 40%;
+            z-index: 2;
+        }
+
+        .ventana2 {
+            width: 20px;
+            height: 20px;
+            background-color: rgb(218, 214, 23);
+            position: absolute;
+            border-radius: 50%;
+            top: 30%;
+            left: 40%;
+            z-index: 2;
+        }
+
+
+        .triangulo2 {
+            width: 0px;
+            height: 0px;
+            border-bottom: 100px solid rgb(58, 47, 211);
+            border-left: 60px solid white;
+            border-right: 60px solid white;
+            position: absolute;
+            top: 33%;
+            left: 23%;
+            z-index: 0;
+        }
+
+        .triangulo3 {
+            width: 0px;
+            height: 0px;
+            border-bottom: 30px solid rgb(240, 243, 46);
+            border-left: 15px solid white;
+            border-right: 15px solid white;
+            position: absolute;
+            top: 57%;
+            left: 33%;
+            z-index: 0;
+            transform: rotate(180deg);
+        }
+        .triangulo4 {
+            width: 0px;
+            height: 0px;
+            border-bottom: 30px solid rgb(240, 243, 46);
+            border-left: 15px solid white;
+            border-right: 15px solid white;
+            position: absolute;
+            top: 57%;
+            left: 43%;
+            z-index: 0;
+            transform: rotate(180deg);
+        }
+
+        
+        
+        
+    </style>
+  </head>
+  <body>
+    <h1>COHETE</h1>
+    <div class="cohete">
+      <div class="triangulo1"></div>
+      <div class="base"></div>
+      <div class="ventana1"></div>
+      <div class="ventana2"></div>
+      <div class="triangulo2"></div>
+      <div class="triangulo3"></div>
+      <div class="triangulo4"></div>
+      
+    </div>
+
+    
+  </body>
+</html>
