@@ -1,0 +1,89 @@
+.Rocket {
+  display: relative;
+  margin-left: 50px;
+}
+
+.bodyRocket {
+  margin-top: 0px;
+}
+
+.window1 {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(203, 208, 68);
+  border-radius: 50%;
+  margin-left: 90px;
+  margin-top: 20px;
+  position: absolute;
+  z-index: 2;
+}
+
+.window2 {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(203, 208, 68);
+  border-radius: 50%;
+  margin-top: 68px;
+  margin-left: 90px;
+  position: absolute;
+  z-index: 2;
+}
+
+.bodyRocket1 {
+  position: absolute;
+  margin-top: 0px;
+  width: 90px;
+  height: 190px;
+  background-color: brown;
+  margin-left: 60px;
+  z-index: 2;
+}
+
+.upperTriangle {
+  margin-top: 90px;
+  width: 0;
+  height: 0;
+  margin-left: 60px;
+  border-right: 45px solid white;
+  border-left: 45px solid white;
+  border-bottom: 60px solid rgb(15, 0, 128);
+  z-index: 1;
+}
+
+.lowerTriangle {
+  width: 0;
+  height: 0;
+  margin-top: 90px;
+  margin-left: 37px;
+  border-right: 70px solid white;
+  border-left: 70px solid white;
+  border-bottom: 100px solid rgb(11, 0, 128);
+  position: absolute;
+  z-index: 1;
+}
+
+.flame1 {
+  width: 0;
+  height: 0;
+  margin-top: 190px;
+  margin-left: 65px;
+  border-right: 20px solid white;
+  border-left: 20px solid white;
+  border-bottom: 40px solid rgb(203, 220, 25);
+  position: absolute;
+  z-index: 1;
+  transform: rotate(180deg);
+}
+
+.flame2 {
+  width: 0;
+  height: 0;
+  margin-top: 190px;
+  margin-left: 105px;
+  border-right: 20px solid white;
+  border-left: 20px solid white;
+  border-bottom: 40px solid rgb(203, 220, 25);
+  position: absolute;
+  z-index: 1;
+  transform: rotate(180deg);
+}

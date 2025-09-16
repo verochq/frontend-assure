@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 3</title>
+  
+    <style>
+        .hojas {
+            width: 200px;
+            height: 180px;
+            background-color: rgb(0, 2, 128);
+            margin: 50px;
+            position: relative;
+        }
+
+        .hojas1 {
+            width: 0px;
+            height: 0px;
+            border-bottom: 30px solid rgb(23, 117, 23);
+            border-left: 40px solid rgb(0, 2, 128);
+            border-right: 40px solid rgb(0, 2, 128);
+            position: absolute;
+            top: 8%;
+            left: 30%;
+            z-index: 2;
+        }
+
+        .hojas2 {
+            margin: 0 auto;
+            width: 0px;
+            height: 0px;
+            border-bottom: 40px solid rgb(23, 117, 23);
+            border-left: 50px solid rgb(0, 2, 128);
+            border-right: 50px solid  rgb(0, 2, 128);
+            position: absolute;
+            z-index: 1;
+            top: 15%;
+            left: 25%;
+
+        }
+
+        .hojas3 {   
+            width: 0px;
+            height: 0px;
+            border-bottom: 60px solid rgb(23, 117, 23);
+            border-left: 70px solid rgb(0, 2, 128);
+            border-right: 70px solid rgb(0, 2, 128);
+            position: absolute;
+            top: 20%;
+            left: 15%;
+        }
+        
+        .tronco {
+            width: 40px;
+            height: 50px;
+            background-color: rgb(112, 70, 14);
+            position: absolute;
+            top: 53%;
+            left: 40%;
+            
+        }
+    </style>
+  </head>
+  <body>
+    <h1>ARBOL</h1>
+    <div class="hojas">
+      <div class="hojas1"></div>
+      <div class="hojas2"></div>
+      <div class="hojas3"></div>
+      <div class="tronco"></div>
+    </div>
+
+    
+  </body>
+</html>

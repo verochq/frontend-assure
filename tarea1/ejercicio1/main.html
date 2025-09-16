@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Veronica Chacon">
+  <title>Exercise 1</title>
+  <style>
+
+    body {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font-size: 16px;
+        
+    }
+    header {
+        margin: 0;
+        background-color: rgb(216, 109, 47);
+        height: 8vh;
+    }
+
+    header h1 {
+        padding: 2vh;
+        margin: 0;
+    }
+
+    .contenido {
+        background-color: blue;
+        height: 88vh;
+        display: flex;
+    }
+
+    nav {
+        background-color: rgb(175, 235, 152);
+        width: 15vw;
+        
+    }
+
+    nav a {
+        display: block;
+    }
+
+    main {
+        background-color: aquamarine;
+        text-align: left;
+        padding-left: 15px;
+        width: 55vw;
+    }
+
+    aside {
+      text-align: left;
+        background-color: rgb(154, 222, 224);
+        width: 30vw;
+        padding-left: 15px;
+    }
+
+
+    footer {
+        background-color:  rgb(216, 109, 47);
+        height: 4vh;
+    }
+
+    footer p {
+        margin: 0;
+        padding: 1vh;
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HTML5 Semantics and Flexbox</h1>
+  </header>
+
+  <div class="contenido">
+    <nav>
+      <h3> Navigate </h3>
+        <strong><a>Home</a></strong>
+        <a href="#">Link1</a>
+        <a href="#">Link2</a>
+
+    </nav>
+
+    <main>
+       <h2>About this page</h2>
+      <p>On this page, I am experimenting with HTML5 semantics and Flexbox.</p>
+      <p>On JS Bin, I purposely includes the stylesheet on the HTML tab (instead of separate CSS tab) for easier code reading for those with small screen</p>
+      <p>The main element is placed within a div element along with nav and aside. I don't know if this is right or wrong (let me know?).</p>
+      <p>Navigation links are placed within nav, laid on the left. The main is at the center column (this column). Within it is the main topic (this article).</p>
+      <p>The aside element is at the rightmost of the column, I put supplemental information on it.</p>
+
+      <h2>Test this page!</h2>
+      <p>Do test this page by:</p>
+      <ul>
+        <li>Resizing the browser windows; see if flexbox lives up to its reputation.</li>
+        <li>Run HTML Outliner or HeadingMap</li>
+        <li>Check the markup</li>
+        <li>Check the CSS part</li>
+      </ul>
+    </main>
+
+    <aside>
+      <h3>HTML</h3>
+      <p>Stands for HyperText Markup Language. The current version is HTML5.</p>
+
+      <h3>CSS</h3>
+      <p>Stands for Cascaded Style Sheet. The current standard is CSS3.</p>
+
+      <h3>URL</h3>
+      <p>Short for Uniform Resource Locator. It is a reference (an address) to a resource on the Internet.</p>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Sept, 2025 @ me</p>
+  </footer>
+</body>
+</html>
