@@ -1,0 +1,52 @@
+/* STRUCTURE */
+
+.box {
+    text-align: center;
+    width: 200px;
+    display: inline-block;
+
+}
+
+.boxCard {
+    padding: 15px;
+    margin: 10px;
+}
+
+.media { 
+  width: 80px;
+}
+
+.name {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.btn {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.btnCard {
+  cursor: pointer;
+}
+
+
+/* SKIN */
+.boxcard--primary { 
+  border: 1px solid #ccc;
+}
+
+.media--avatar {
+  border-radius: 50%;
+}
+
+.text-role--primary {
+  color: #777;
+  font-style: italic;
+}
+
+.btn--dark {
+  background-color: #333;
+  color: white;
+  border: none;
+}
