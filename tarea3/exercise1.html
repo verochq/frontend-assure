@@ -10,35 +10,47 @@
         padding: 0;
         margin: 0;
         text-align: center;
-        font-size: 16px;
-      }
-      .container {
+        font-size: 6vh;
         background-color: rgb(146, 216, 210);
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
 
-      .counter_characters {
+      .container_counter {
+        height: 100vh;
+      }
+
+      .container_counter__characters--primary {
         color: green;
+      }
+
+      .container_counter__characters--secondary {
+        color: black;
+      }
+
+      .container_counter__characters--tertiary {
+        color: rgb(170, 30, 30);
+      }
+
+      .container_counter__textInput {
+        font-size: 2vw;
+        width: 50vw;
+        height: 20vh;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <main>
-        <h2>Live Character Counter</h2>
-        <textarea class="textInput"></textarea>
-        <p class="counter counter_characters">Characters: 0 / 200</p>
-        <p class="counter counter_words">Words: 0 / 200</p>
-      </main>
+    <div class="container_counter" id="container_counter">
+        <h2 class="container_counter__title">Live Character Counter</h2>
+        <textarea class="container_counter__textInput"></textarea>
+        <p class="container_counter__characters container_counter__characters--primary">Characters: 0 / 200</p>
+        <p class="container_counter__words">Words: 0 / 200</p>
     </div>
 
     <script>
-      const textInput = document.querySelector(".textInput");
-      const counter_characters = document.querySelector(".counter_characters");
-      const counter_words = document.querySelector(".counter_words");
+
+      const container_counter = document.getElementById('container_counter');
+      const textInput = container_counter.querySelector(".container_counter__textInput");
+      const counter_characters = container_counter.querySelector(".container_counter__characters");
+      const counter_words = container_counter.querySelector(".container_counter__words");
 
       textInput.addEventListener("input", function () {
         const text = textInput.value;
@@ -49,9 +61,19 @@
         counter_words.innerHTML = `Words: ${words} / 200`;
 
         if (characters > 200) {
-          counter_characters.style.color = "red";
+          counter_characters.classList.add('container_counter__characters--tertiary');
+          counter_characters.classList.remove('container_counter__characters--secondary');
+          counter_characters.classList.remove('container_counter__characters--primary');
+          // counter_characters.style.color = "red";
         } else if (characters > 50) {
-          counter_characters.style.color = "black";
+          counter_characters.classList.add('container_counter__characters--secondary');
+          counter_characters.classList.remove('container_counter__characters--primary');
+          counter_characters.classList.remove('container_counter__characters--tertiary');
+          // counter_characters.style.color = "black";
+        } else {
+          counter_characters.classList.add('container_counter__characters--primary');
+          counter_characters.classList.remove('container_counter__characters--secondary');
+          counter_characters.classList.remove('container_counter__characters--tertiary');
         }
       });
     </script>
