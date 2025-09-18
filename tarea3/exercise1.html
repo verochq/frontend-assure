@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Veronica Chacon" />
+    <title>Exercise 1</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font-size: 16px;
+      }
+      .container {
+        background-color: rgb(146, 216, 210);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .counter_characters {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <main>
+        <h2>Live Character Counter</h2>
+        <textarea class="textInput"></textarea>
+        <p class="counter counter_characters">Characters: 0 / 200</p>
+        <p class="counter counter_words">Words: 0 / 200</p>
+      </main>
+    </div>
+
+    <script>
+      const textInput = document.querySelector(".textInput");
+      const counter_characters = document.querySelector(".counter_characters");
+      const counter_words = document.querySelector(".counter_words");
+
+      textInput.addEventListener("input", function () {
+        const text = textInput.value;
+        const characters = text.length;
+        const words = text.trim() === "" ? 0 : text.trim().split(" ").length;
+
+        counter_characters.innerHTML = `Characters: ${characters} / 200`;
+        counter_words.innerHTML = `Words: ${words} / 200`;
+
+        if (characters > 200) {
+          counter_characters.style.color = "red";
+        } else if (characters > 50) {
+          counter_characters.style.color = "black";
+        }
+      });
+    </script>
+  </body>
+</html>
