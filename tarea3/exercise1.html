@@ -5,37 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Veronica Chacon" />
     <title>Exercise 1</title>
-    <style>
-      body {
-        padding: 0;
-        margin: 0;
-        text-align: center;
-        font-size: 6vh;
-        background-color: rgb(146, 216, 210);
-      }
-
-      .container_counter {
-        height: 100vh;
-      }
-
-      .container_counter__characters--primary {
-        color: green;
-      }
-
-      .container_counter__characters--secondary {
-        color: black;
-      }
-
-      .container_counter__characters--tertiary {
-        color: rgb(170, 30, 30);
-      }
-
-      .container_counter__textInput {
-        font-size: 2vw;
-        width: 50vw;
-        height: 20vh;
-      }
-    </style>
+    <link rel="stylesheet" href="exercise1.css">
   </head>
   <body>
     <div class="container_counter" id="container_counter">
@@ -45,37 +15,6 @@
         <p class="container_counter__words">Words: 0 / 200</p>
     </div>
 
-    <script>
-
-      const container_counter = document.getElementById('container_counter');
-      const textInput = container_counter.querySelector(".container_counter__textInput");
-      const counter_characters = container_counter.querySelector(".container_counter__characters");
-      const counter_words = container_counter.querySelector(".container_counter__words");
-
-      textInput.addEventListener("input", function () {
-        const text = textInput.value;
-        const characters = text.length;
-        const words = text.trim() === "" ? 0 : text.trim().split(" ").length;
-
-        counter_characters.innerHTML = `Characters: ${characters} / 200`;
-        counter_words.innerHTML = `Words: ${words} / 200`;
-
-        if (characters > 200) {
-          counter_characters.classList.add('container_counter__characters--tertiary');
-          counter_characters.classList.remove('container_counter__characters--secondary');
-          counter_characters.classList.remove('container_counter__characters--primary');
-          // counter_characters.style.color = "red";
-        } else if (characters > 50) {
-          counter_characters.classList.add('container_counter__characters--secondary');
-          counter_characters.classList.remove('container_counter__characters--primary');
-          counter_characters.classList.remove('container_counter__characters--tertiary');
-          // counter_characters.style.color = "black";
-        } else {
-          counter_characters.classList.add('container_counter__characters--primary');
-          counter_characters.classList.remove('container_counter__characters--secondary');
-          counter_characters.classList.remove('container_counter__characters--tertiary');
-        }
-      });
-    </script>
+    <script src="exercise1.js"></script>
   </body>
 </html>
