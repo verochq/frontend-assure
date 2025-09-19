@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <style>
+      .weather-icon--primary {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Weather App</h1>
+      <form>
+        <label for="city">Choose a City:</label>
+        <select id="city" name="city">
+          <option value="">-- Seleccione una ciudad --</option>
+          <option value="La Paz">La Paz</option>
+          <option value="Cochabamba">Cochabamba</option>
+          <option value="Santa Cruz">Santa Cruz</option>
+          <option value="Potosi">Potosi</option>
+          <option value="Tarija">Tarija</option>
+        </select>
+      </form>
+
+      <div class="weather-container">
+        <div class="weather-temperature">
+          <img
+            class="weather-icon weather-icon--primary"
+            src=""
+            alt="Weather Icon"
+          />
+          <p class="weather-temperature-value"></p>
+        </div>
+        <div class="weather-deep-info">
+          <p class="weather-precipitation"></p>
+          <p class="weather-humidity"></p>
+          <p class="weather-wind"></p>
+        </div>
+      </div>
+
+      <div class="weather-location">
+        <p class="weather-location-city"></p>
+        <p class="weather-location-time"></p>
+        <p class="weather-description"></p>
+      </div>
+    </main>
+
+    <script>
+      const API_KEY = "0205402d5f504cc5b6c211514251809";
+
+      const citySelect = document.getElementById("city");
+      citySelect.addEventListener("change", mostrarClima);
+
+      function mostrarClima() {
+        const city = citySelect.value;
+
+        if (!city) {
+          document.querySelector(".weather-icon").style.display = "none";
+          return;
+        }
+
+        const data2 = async () => {
+          const response = await fetch(
+            `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&lang=es`
+          );
+          const data = await response.json();
+          return data;
+        };
+
+        data2().then((data2) => {
+          // ICON
+          const icon = document.querySelector(".weather-icon");
+          icon.style.display = "block";
+          icon.src = data2.current.condition.icon;
+
+          // TEMPERATURA
+          const temperature = document.querySelector(
+            ".weather-temperature-value"
+          );
+          const temperatureCelsius = data2.current.temp_c;
+          temperature.textContent = temperatureCelsius;
+
+          // PROB. DE PRECIPITACIÓN
+          const precipitation = document.querySelector(
+            ".weather-precipitation"
+          );
+          const precipitationProbability =
+            data2.forecast.forecastday[0].day.daily_chance_of_rain;
+          precipitation.textContent = `Prob. de precipitaciones: ${precipitationProbability}%`;
+
+          // HUMEDAD
+          const humidity = document.querySelector(".weather-humidity");
+          const humidityValue = data2.current.humidity;
+          humidity.textContent = `Humedad: ${humidityValue}%`;
+
+          // VIENTO
+          const wind = document.querySelector(".weather-wind");
+          const windkph = data2.current.wind_kph;
+          wind.textContent = `Viento: ${windkph} km/h`;
+
+          // LUGAR
+          const location = document.querySelector(".weather-location-city");
+          location.textContent = data2.location.name;
+
+          // DÍA, HORA Y MINUTO
+          const currentTime = document.querySelector(".weather-location-time");
+          const dias = [
+            "domingo",
+            "lunes",
+            "martes",
+            "miércoles",
+            "jueves",
+            "viernes",
+            "sábado",
+          ];
+          const now = new Date();
+          const time = now.toLocaleTimeString("es-ES", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+          currentTime.textContent = `${dias[now.getDay()]}, ${time}`;
+
+          // CONDICIÓN CLIMÁTICA
+          const description = document.querySelector(".weather-description");
+          description.textContent =
+            data2.forecast.forecastday[0].day.condition.text;
+        });
+      }
+    </script>
+  </body>
+</html>
