@@ -1,29 +1,29 @@
 body {
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  font-size: 6vh;
-  background-color: rgb(146, 216, 210);
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 6vh;
+    background-color: rgb(146, 216, 210);
 }
 
 .container_counter {
-  height: 100vh;
+    height: 100vh;
 }
 
 .container_counter__characters--primary {
-  color: green;
+    color: green;
 }
 
 .container_counter__characters--secondary {
-  color: black;
+    color: black;
 }
 
 .container_counter__characters--tertiary {
-  color: rgb(170, 30, 30);
+    color: rgb(170, 30, 30);
 }
 
 .container_counter__textInput {
     font-size: 2vw;
-    width: 50vw;
     height: 20vh;
+    width: 50vw;
 }

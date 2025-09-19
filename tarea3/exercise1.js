@@ -5,11 +5,11 @@ const counter_words = container_counter.querySelector(".container_counter__words
 
 textInput.addEventListener("input", function () {
     const text = textInput.value;
-    const characters = text.length;
+    const characters = text.length();
     const words = text.trim() === "" ? 0 : text.trim().split(" ").length;
     counter_characters.innerHTML = `Characters: ${characters} / 200`;
     counter_words.innerHTML = `Words: ${words} / 200`;
-    
+
     if (characters > 200) {
       counter_characters.classList.add('container_counter__characters--tertiary');
       counter_characters.classList.remove('container_counter__characters--secondary');
