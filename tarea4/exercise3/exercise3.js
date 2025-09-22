@@ -1,10 +1,7 @@
 function getUser(id) {
-  return fetch(`https://jsonplaceholder.typicode.com/users/${id}`).then(
-    (res) => {
-      if (!res.ok) throw new Error("Failed to fetch user:", res.status);
-      return res.json();
-    }
-  );
+  return fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+  .then(response => response.json())
+  .catch(error => {console.log("Error ", error)});
 }
 
 function getUserPosts(userId) {

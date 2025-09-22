@@ -1,5 +1,3 @@
-// gulpfile.js — VERIFICACIÓN FINAL (NO CAMBIES NADA)
-
 const { task, src, dest, parallel } = require("gulp");
 const browserSync = require("browser-sync").create();
 
@@ -67,7 +65,7 @@ task("scripts", () => {
 //vi. Minify all the images and move into dist (distribution) folder
 task("images", async () => {
   const imagemin = await getImageMin();
-  return src(paths.src.img)
+  return src(paths.src.img, { encoding: false } )
     .pipe(imagemin())
     .pipe(dest(paths.dist + "/img"));
 });
