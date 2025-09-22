@@ -1,4 +1,4 @@
-const { task, src, dest, parallel } = require("gulp");
+const { task, src, dest, parallel, watch, series } = require("gulp");
 const browserSync = require("browser-sync").create();
 
 const sass = require("gulp-sass")(require("sass"));
@@ -7,7 +7,7 @@ const autoprefixer = require("autoprefixer");
 const cleanCSS = require("gulp-clean-css");
 const concat = require("gulp-concat");
 const uglify = require("gulp-uglify-es").default;
-const htmlReplace = require("gulp-html-replace");
+const inject = require("gulp-inject");
 
 async function getImageMin() {
   const imagemin = await import("gulp-imagemin");
@@ -17,7 +17,7 @@ async function getImageMin() {
 //Rutas
 const paths = {
   src: {
-    html: "./index.html",
+    html: "dist/index.html",
     css: "./css/*.scss",
     js: "./js/*.js",
     img: "./img/**/*",
@@ -73,33 +73,24 @@ task("images", async () => {
 //HTML
 // vii. Inject automatically the generated files into index.html and move to distfolder;
 task("html", () => {
+  let sources = src(["dist/css/*", "dist/js/*.js"], {read: false});
   return src(paths.src.html)
-    .pipe(
-      htmlReplace({
-        css: "dist/css/styles.min.css",
-        js: "dist/js/app.min.js",
-      })
-    )
-    .pipe(dest(paths.dist));
-});
-
-// Tarea por defecto
-task("default", async () => {
-  console.log("Hello gulp!");
-  return new Promise((resolve) => resolve());
+    .pipe(inject(sources))
+    .pipe(dest("./"));
 });
 
 // build completo
 task("build", parallel("styles", "scripts", "images", "html"));
 
+
+
 task("watch", () => {
-  gulp.watch(paths.src.css, series("styles", "html", "build"));
-
-  gulp.watch(paths.src.js, series("scripts", "html", "build"));
-
-  gulp.watch(paths.src.html, series("html", "build"));
-
-  gulp.watch(paths.src.img, series("images"));
-
-  gulp.watch([paths.dist + "/**/*"]).on("change", browserSync.reload);
+  watch(paths.src.css, series("build")).on("change", browserSync.reload);
+  watch(paths.src.js, series("build")).on("change", browserSync.reload);;
+  watch(paths.src.html, series("build")).on("change", browserSync.reload);;
+  watch(paths.src.img, series("build")).on("change", browserSync.reload);;
+  watch([paths.dist + "/**/*"]).on("change", browserSync.reload);
 });
+
+// Tarea por defecto
+task("default", series("build", "server", "watch"));
