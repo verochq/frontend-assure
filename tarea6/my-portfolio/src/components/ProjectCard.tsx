@@ -6,10 +6,10 @@ export type PropsProject = {
 
 function ProjectCard({ title, description, link }: PropsProject) {
   return (
-    <div className="ProjectCard">
+    <div className="project-card">
       <h2>{title}</h2>
       <p>{description}</p>
-      <a href={link}>Link</a>
+      <a href={link}>See it!</a>
     </div>
   );
 }
