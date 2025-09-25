@@ -1,60 +1,35 @@
-import React, { Component } from "react";
+import { useState, useEffect } from 'react';
 
-type User = {
+type Props = {
   id: number;
   name: string;
-  age: number;
-};
+}
 
-const users = [
-  { id: 1, name: "John Doe", age: 30 },
-  { id: 2, name: "Jane Doe", age: 25 },
-  { id: 3, name: "Bob Smith", age: 35 },
-];
+function UserList () {
+  const [users, setUsers] = useState<[]>();
+  const [loading, setLoading] = useState<boolean>(true);
 
-function UserList({ user }: User) {
-  return (
-    <div className="user-list">
-      <h2>Users</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            {user.name}
-            {user.age}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-
-componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users")
+  useEffect (()=>{
+    fetch('https://jsonplaceholder.typicode.com/users')
       .then((res) => res.json())
-      .then((data) =>
-        this.setState({
-          users: data,
-          loading: false,
-        })
-      );
-  }
+      .then((data) => {
+        setUsers(data);
+        setLoading(false)
+      });
+  }, [users]);
 
-  render() {
-    const { users, loading } = this.state;
-
-    if (loading) {
-      return <p>Loading...</p>;
-    }
-
-    return (
-      <ul>
-        {users.map((user) => (
+  return (
+      <div className='users-container'>
+      {loading ? <p>Loading...</p> : 
+        <ul>
+        {users?.map((user: Props) => (
           <li key={user.id}>{user.name}</li>
         ))}
       </ul>
-    );
-  }
+      }
+      </div>
+
+  );
 }
 
 export default UserList;

@@ -1,35 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import ControlledUncontrolledForm from './components/ControlledUncontrolledForm'
+import UserCard from './components/UseCard'
+import UserList from './components/UserList';
+import KeyboardControlledCounter from './components/KeyboardControlledCounter';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h3>Exercise 1</h3>
+      <ControlledUncontrolledForm/>
+      <h3>Exercise 2</h3>
+      <UserCard name={'Sarah'} age={25} onClick={()=>{console.log(`Boton user card clickeado`)}}/>
+      <h3>Exercise 3</h3>
+      <UserList/>
+      <h3>Exercise 4</h3>
+      <KeyboardControlledCounter/>
+      
     </>
-  )
+  );
 }
 
 export default App
