@@ -1,0 +1,12 @@
+.addCardForm {
+    background-color: aliceblue;
+}
+
+.fieldCardForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonCardForm {
+    margin-top: 5vh;
+}

@@ -1,0 +1,36 @@
+
+.flashcard {
+    height: 30vh;
+    width: 18vw;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    word-wrap: break-word;
+}
+
+.flashcard__contain{
+    text-align: center;
+    width: 16vw;
+    height: 10vh;
+    margin: 5vh;
+    padding: 2vh;
+    background-color: aqua;
+}
+
+
+
+
+#flashcard__contain--answer{
+    display: none;
+}
+
+
+.flashcard__topic {
+    margin: 0 1vw;
+    width: 10vw;
+    text-align: right;
+    background-color: rgb(177, 122, 160);
+    align-self: flex-end;
+}
