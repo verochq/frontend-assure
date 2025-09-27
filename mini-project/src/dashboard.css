@@ -1,0 +1,8 @@
+.flashcards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.flashcards-add-button {
+  font-size: 10vh;
+}

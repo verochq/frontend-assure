@@ -1,45 +1,31 @@
-import '../flashcard.css'
-function Flashcard() {
+import "../flashcard.css";
+import { useState } from "react";
 
-    const handleClickCard = () => {
-        const question = document.getElementById("flashcard__contain--question");
-        const answer = document.getElementById("flashcard__contain--answer");
+type FlashcardProps = {
+  question: string;
+  answer: string;
+  topic: string;
+  isLearned: boolean;
+};
 
-        console.log(question);
-        if (!question || !answer) {
-            return;
-        }
+function Flashcard({ question, answer, topic }: FlashcardProps) {
+  const [isAnswerShow, setIsAnswerShow] = useState(false);
 
-        if (answer.style.display === "block") {
-            question.style.display = "block";
-            answer.style.display = "none";
-        } else {
-            question.style.display = "none";
-            answer.style.display = "block";
-        }
-        
-        console.log("Click");
-    };
+  const handleClickCard = () => {
+    setIsAnswerShow(!isAnswerShow);
+  };
 
-    return (
-        <>
-            <div>
-                <details>Contents</details>
-                <fieldset> 
-                    <legend>Details:</legend>
-                    Name:<input type="text"></input>
-                    Emp_Id:<input type="text"></input>
-                    Designation:<input type="text"></input>
-                </fieldset>
-            </div>
-            <div className='flashcard' onClick={handleClickCard}>
-                <p className='flashcard__contain' id='flashcard__contain--question'>questuaaaaaquestion</p>
-                <p className='flashcard__contain' id='flashcard__contain--answer'>respuest</p>
-                <p className='flashcard__topic'>topic</p>
-            </div>
-           
-        </>
-    );
+  return (
+    <>
+      <div
+        className={`flashcard ${isAnswerShow ? "flashcard--showing-answer" : ""}`}
+        onClick={handleClickCard}
+      >
+        <p className="flashcard__contain">{isAnswerShow ? answer : question}</p>
+        <p className="flashcard__topic">{topic}</p>
+      </div>
+    </>
+  );
 }
 
 export default Flashcard;
