@@ -1,49 +1,39 @@
-import { useState } from "react";
 import Flashcard from "./Flashcard";
 import FlashcardForm from "./FlashcardForm";
-import { initialFlashcards } from "../data/data";
-import type { FlashcardType, FlashcardData } from "../types/types";
 import "../flashcard.css";
 import "../dashboard.css";
+import ProgressBar from "./ProgressBar";
+import type { FlashcardData, FlashcardType } from "../types/types";
 
-function Dashboard() {
-  const [isAddShown, setIsAddShown] = useState(false);
-  const [editingFlashcard, setEditingFlashcard] =
-    useState<FlashcardType | null>(null);
-  const [flashcards, setFlashcards] =
-    useState<FlashcardType[]>(initialFlashcards);
+type DashboardProps = {
+  flashcards: FlashcardType[];
+  editingFlashcard: FlashcardType | null;
+  isAdding: boolean;
+  createFlashcard: (data: FlashcardData) => void;
+  updateFlashcard: (data: FlashcardData) => void;
+  removeFlashcard: (id: string) => void;
+  startEdit: (id: string) => void;
+  startAdd: () => void;
+  cancelEdit: () => void;
+  cancelAdd: () => void;
+};
 
-  const handleCreate = (data: FlashcardData) => {
-    const newFlashcard: FlashcardType = {
-      ...data,
-      id: Date.now().toString(),
-      isLearned: false,
-    };
-    setFlashcards((prev) => [...prev, newFlashcard]);
-    setIsAddShown(false);
-  };
-
-  const handleUpdate = (data: FlashcardData) => {
-    if (!editingFlashcard) return;
-    setFlashcards((prev) =>
-      prev.map((flashcard) =>
-        flashcard.id === editingFlashcard.id
-          ? { ...flashcard, ...data }
-          : flashcard
-      )
-    );
-    setEditingFlashcard(null);
-  };
-
+function Dashboard({
+  flashcards,
+  editingFlashcard,
+  isAdding,
+  createFlashcard,
+  updateFlashcard,
+  removeFlashcard,
+  startEdit,
+  startAdd,
+  cancelEdit,
+  cancelAdd,
+}: DashboardProps) {
   const handleDelete = (id: string) => {
     if (confirm("¿Eliminar esta tarjeta?")) {
-      setFlashcards((prev) => prev.filter((flascard) => flascard.id !== id));
+      removeFlashcard(id);
     }
-  };
-
-  const handleEdit = (id: string) => {
-    const currentFlashcard = flashcards.find((flashcard) => flashcard.id === id);
-    setEditingFlashcard(currentFlashcard || null);
   };
 
   return (
@@ -51,7 +41,7 @@ function Dashboard() {
       <header>
         <h1>Dashboard</h1>
         <h2>Flashcards</h2>
-        <p>Bar</p>
+        <ProgressBar flashcards={flashcards} />
       </header>
 
       <div className="flashcards-container">
@@ -59,15 +49,12 @@ function Dashboard() {
           <Flashcard
             key={flashcard.id}
             {...flashcard}
-            onEdit={(id) => {handleEdit(id)}}
-            onDelete={(id) => {handleDelete(id)}}
+            onEdit={startEdit}
+            onDelete={handleDelete}
           />
         ))}
 
-        <div
-          className="flashcards-add-button flashcard"
-          onClick={() => setIsAddShown(true)}
-        >
+        <div className="flashcards-add-button flashcard" onClick={startAdd}>
           +
         </div>
       </div>
@@ -79,16 +66,13 @@ function Dashboard() {
             answer: editingFlashcard.answer,
             topic: editingFlashcard.topic,
           }}
-          onSubmit={handleUpdate}
-          onCancel={() => setEditingFlashcard(null)}
+          onSubmit={updateFlashcard}
+          onCancel={cancelEdit}
         />
       )}
 
-      {isAddShown && (
-        <FlashcardForm
-          onSubmit={handleCreate}
-          onCancel={() => setIsAddShown(false)}
-        />
+      {isAdding && (
+        <FlashcardForm onSubmit={createFlashcard} onCancel={cancelAdd} />
       )}
     </>
   );

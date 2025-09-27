@@ -6,7 +6,7 @@ export const initialFlashcards: FlashcardType[] = [
     question: "What is the capital of France?",
     answer: "Paris",
     topic: "Geography",
-    isLearned: false,
+    isLearned: true,
   },
   {
     id: "2",
