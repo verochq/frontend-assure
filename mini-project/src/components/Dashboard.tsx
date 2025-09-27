@@ -1,59 +1,49 @@
 import { useState } from "react";
 import Flashcard from "./Flashcard";
-import AddFlashcard from "./AddFlashcard";
+import FlashcardForm from "./FlashcardForm";
+import { initialFlashcards } from "../data/data";
+import type { FlashcardType, FlashcardData } from "../types/types";
 import "../flashcard.css";
 import "../dashboard.css";
 
-type FlashcardType = {
-  id: string;
-  question: string;
-  answer: string;
-  topic: string;
-  isLearned: boolean;
-};
-
-const initialFlashcards: FlashcardType[] = [
-  {
-    id: "1",
-    question: "What is the capital of France?",
-    answer: "Paris",
-    topic: "Geography",
-    isLearned: false,
-  },
-  {
-    id: "2",
-    question: "What is the capital of Spain?",
-    answer: "Madrid",
-    topic: "Geography",
-    isLearned: false,
-  },
-  {
-    id: "3",
-    question: "What is the capital of Germany?",
-    answer: "Berlin",
-    topic: "Geography",
-    isLearned: false,
-  },
-];
-
 function Dashboard() {
   const [isAddShown, setIsAddShown] = useState(false);
-  const [flashcards, setFlashcards] = useState<FlashcardType[]>(initialFlashcards);
+  const [editingFlashcard, setEditingFlashcard] =
+    useState<FlashcardType | null>(null);
+  const [flashcards, setFlashcards] =
+    useState<FlashcardType[]>(initialFlashcards);
 
-  const handleAdd = (question: string, answer: string, topic: string) => {
+  const handleCreate = (data: FlashcardData) => {
     const newFlashcard: FlashcardType = {
+      ...data,
       id: Date.now().toString(),
-      question,
-      answer,
-      topic,
       isLearned: false,
     };
-    setFlashcards([...flashcards, newFlashcard]);
-    setIsAddShown(false); 
+    setFlashcards((prev) => [...prev, newFlashcard]);
+    setIsAddShown(false);
   };
 
-  const toggleAddForm = () => {
-    setIsAddShown(!isAddShown);
+  const handleUpdate = (data: FlashcardData) => {
+    if (!editingFlashcard) return;
+    setFlashcards((prev) =>
+      prev.map((flashcard) =>
+        flashcard.id === editingFlashcard.id
+          ? { ...flashcard, ...data }
+          : flashcard
+      )
+    );
+    setEditingFlashcard(null);
+  };
+
+  const handleDelete = (id: string) => {
+    if (confirm("¿Eliminar esta tarjeta?")) {
+      setFlashcards((prev) => prev.filter((flascard) => flascard.id !== id));
+    }
+  };
+
+  const handleEdit = (id: string) => {
+    const currentFlashcard = flashcards.find((flashcard) => flashcard.id === id);
+    setEditingFlashcard(currentFlashcard || null);
   };
 
   return (
@@ -68,20 +58,38 @@ function Dashboard() {
         {flashcards.map((flashcard) => (
           <Flashcard
             key={flashcard.id}
-            question={flashcard.question}
-            answer={flashcard.answer}
-            topic={flashcard.topic}
-            isLearned={flashcard.isLearned}
+            {...flashcard}
+            onEdit={(id) => {handleEdit(id)}}
+            onDelete={(id) => {handleDelete(id)}}
           />
         ))}
 
-        <div className="flashcards-add-button flashcard" onClick={toggleAddForm}>
+        <div
+          className="flashcards-add-button flashcard"
+          onClick={() => setIsAddShown(true)}
+        >
           +
         </div>
       </div>
 
-      {/* Mostramos el formulario solo si isAddShown es true */}
-      {isAddShown && <AddFlashcard onAdd={handleAdd} onCancel={() => setIsAddShown(false)} />}
+      {editingFlashcard && (
+        <FlashcardForm
+          initialData={{
+            question: editingFlashcard.question,
+            answer: editingFlashcard.answer,
+            topic: editingFlashcard.topic,
+          }}
+          onSubmit={handleUpdate}
+          onCancel={() => setEditingFlashcard(null)}
+        />
+      )}
+
+      {isAddShown && (
+        <FlashcardForm
+          onSubmit={handleCreate}
+          onCancel={() => setIsAddShown(false)}
+        />
+      )}
     </>
   );
 }

@@ -25,6 +25,14 @@
   background-color: rgb(13, 0, 255);
 }
 
+.flashcard__options {
+  text-align: center;
+  font-size: 0.7rem;
+  background-color: rgb(177, 122, 160);
+  align-self: flex-end;
+  cursor: pointer;
+}
+
 .flashcard__topic {
   margin: 0 3vh;
   text-align: right;

@@ -1,27 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../addflashcard.css";
+import type { FlashcardFormProps } from "../types/types";
 
-type AddFlashcardProps = {
-  onAdd: (question: string, answer: string, topic: string) => void;
-  onCancel: () => void;
-};
-
-function AddFlashcard({ onAdd, onCancel }: AddFlashcardProps) {
+function FlashcardForm({ initialData, onSubmit, onCancel }: FlashcardFormProps) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [topic, setTopic] = useState("");
 
+  useEffect(() => {
+    if (initialData) {
+      setQuestion(initialData.question);
+      setAnswer(initialData.answer);
+      setTopic(initialData.topic);
+    }
+  }, [initialData]);
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (question.trim() && answer.trim() && topic) {
-      onAdd(question, answer, topic);
+      onSubmit({question, answer, topic});
     }
   };
 
+  const isEditing = !!initialData;
+  const title = isEditing ? "Edit flash card" : "Add a flash card";
+  const submitText = isEditing ? "Update" : "Save";
+
+  
   return (
     <form className="addCardForm" onSubmit={handleSubmit}>
       <fieldset className="fieldCardForm">
-        <legend>Add a flash card:</legend>
+        <legend>{title}</legend>
         <label>Question:</label>
         <input
           type="text"
@@ -51,11 +60,11 @@ function AddFlashcard({ onAdd, onCancel }: AddFlashcardProps) {
           <option value="Music">Music 🟦</option>
           <option value="Philosophy">Philosophy 🟪</option>
         </select>
-        <button type="submit">Save</button>
+        <button type="submit">{submitText}</button>
         <button type="button" onClick={onCancel}>Cancel</button>
       </fieldset>
     </form>
   );
 }
 
-export default AddFlashcard;
+export default FlashcardForm;
