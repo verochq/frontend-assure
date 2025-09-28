@@ -7,12 +7,14 @@ import "../flashcard.css";
 type StudyModeProps = {
   flashcards: FlashcardType[];
   updateLearned: (id: string, hasLearned: boolean) => void;
+  onModeChange: (studyMode: boolean) => void;
 };
 
-function StudyMode({ flashcards : allFlashcards , updateLearned }: StudyModeProps) {
+function StudyMode({ flashcards : allFlashcards , updateLearned, onModeChange }: StudyModeProps) {
 
   const [shuffledFlashcards, setShuffledFlashcards] =
     useState<FlashcardType[]>([]);
+  const [hasStarted, setHasStarted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
 
@@ -33,6 +35,7 @@ function StudyMode({ flashcards : allFlashcards , updateLearned }: StudyModeProp
   const currentFlashcard =  shuffledFlashcards[currentIndex];
   
   const handleFlashcardClick = (hasLearned: boolean) => {
+    setHasStarted(true);
     if (!currentFlashcard || isFinished) return;
     updateLearned(currentFlashcard.id, hasLearned);
     if (currentIndex >= shuffledFlashcards.length - 1) {
@@ -51,14 +54,14 @@ function StudyMode({ flashcards : allFlashcards , updateLearned }: StudyModeProp
           <h1>Study Mode</h1>
           <ProgressBar flashcards={allFlashcards}/>
         </div>
-        <button onClick={shuffle}>Shuffle</button>
+        <button onClick={shuffle} disabled={hasStarted}>Shuffle</button>
       </header>
 
       
       <div className="study-mode-flashcards-container">
         <div className="study-mode-flashcards">
           {!isFinished ? <Flashcard {...currentFlashcard}/> : <div className="flashcard">No hay más flashcards!
-          <button>Volver al dashboard</button>
+          <button onClick={()=> onModeChange(false)}>Volver al dashboard</button>
           </div>
           }
         </div>

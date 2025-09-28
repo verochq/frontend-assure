@@ -5,21 +5,52 @@ export const initialFlashcards: FlashcardType[] = [
     id: "1",
     question: "What is the capital of France?",
     answer: "Paris",
-    topic: "Geography",
+    topic: "Music",
     isLearned: true,
   },
   {
     id: "2",
     question: "What is the capital of Spain?",
     answer: "Madrid",
-    topic: "Geography",
+    topic: "Music",
     isLearned: false,
   },
   {
     id: "3",
     question: "What is the capital of Germany?",
     answer: "Berlin",
-    topic: "Geography",
+    topic: "Music",
     isLearned: false,
   },
 ];
+
+const FLASHCARDS_STORAGE_KEY = "flashcards_data";
+
+export const saveFlashcards = (flashcards: FlashcardType[]) => {
+  try {
+    localStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(flashcards));
+  } catch (error) {
+    console.error("No se pudo guardar en localStorage:", error);
+  }
+};
+
+export const loadFlashcards = (): FlashcardType[] | null => {
+  try {
+    const data = localStorage.getItem(FLASHCARDS_STORAGE_KEY);
+    return data ? JSON.parse(data) : null;
+  } catch (error) {
+    console.error("No se pudo cargar de localStorage:", error);
+    return null;
+  }
+};
+
+//SAVED PROGRESS
+const PROGRESS_STORAGE_KEY = "progress_data";
+
+export const saveProgress = (progress: number) => {
+  try {
+    localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress));
+  } catch (error) {
+    console.error("No se pudo guardar el progreso:", error);
+  }
+};

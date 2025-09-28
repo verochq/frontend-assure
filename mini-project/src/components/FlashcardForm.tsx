@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import "../addflashcard.css";
 import type { FlashcardFormProps } from "../types/types";
+import { TOPICS } from "../data/topics";
 
-function FlashcardForm({ initialData, onSubmit, onCancel }: FlashcardFormProps) {
+function FlashcardForm({
+  initialData,
+  onSubmit,
+  onCancel,
+}: FlashcardFormProps) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [topic, setTopic] = useState("");
@@ -14,24 +19,21 @@ function FlashcardForm({ initialData, onSubmit, onCancel }: FlashcardFormProps) 
       setTopic(initialData.topic);
     }
   }, [initialData]);
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (question.trim() && answer.trim() && topic) {
-      onSubmit({question, answer, topic});
-    }
+    onSubmit({ question, answer, topic });
   };
 
   const isEditing = !!initialData;
   const title = isEditing ? "Edit flash card" : "Add a flash card";
   const submitText = isEditing ? "Update" : "Save";
 
-  
   return (
     <form className="addCardForm" onSubmit={handleSubmit}>
       <fieldset className="fieldCardForm">
         <legend>{title}</legend>
-        <label>Question:</label>
+        <label  htmlFor="question">Question:</label>
         <input
           type="text"
           placeholder="Question"
@@ -39,7 +41,7 @@ function FlashcardForm({ initialData, onSubmit, onCancel }: FlashcardFormProps) 
           onChange={(e) => setQuestion(e.target.value)}
           required
         />
-        <label>Answer:</label>
+        <label  htmlFor="answer">Answer:</label>
         <input
           type="text"
           placeholder="Answer"
@@ -47,21 +49,23 @@ function FlashcardForm({ initialData, onSubmit, onCancel }: FlashcardFormProps) 
           onChange={(e) => setAnswer(e.target.value)}
           required
         />
-        <label>Topic:</label>
+        <label htmlFor="topic">Topic:</label>
         <select
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
           required
         >
           <option value="">-- Select a topic --</option>
-          <option value="Math">Math 🟥</option>
-          <option value="Science">Science 🟨</option>
-          <option value="Programming">Programming 🟩</option>
-          <option value="Music">Music 🟦</option>
-          <option value="Philosophy">Philosophy 🟪</option>
+          {TOPICS.map((t) => (
+            <option key={t.name} value={t.name}>
+              {t.name} {t.icon}
+            </option>
+          ))}
         </select>
         <button type="submit">{submitText}</button>
-        <button type="button" onClick={onCancel}>Cancel</button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
       </fieldset>
     </form>
   );

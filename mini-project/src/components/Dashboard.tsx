@@ -1,9 +1,9 @@
-import Flashcard from "./Flashcard";
 import FlashcardForm from "./FlashcardForm";
 import "../flashcard.css";
 import "../dashboard.css";
 import ProgressBar from "./ProgressBar";
 import type { FlashcardData, FlashcardType } from "../types/types";
+import FilterFlashcard from "./FilterFlashcard";
 
 type DashboardProps = {
   flashcards: FlashcardType[];
@@ -16,6 +16,7 @@ type DashboardProps = {
   startAdd: () => void;
   cancelEdit: () => void;
   cancelAdd: () => void;
+  onModeChange: (studyMode: boolean) => void;
 };
 
 function Dashboard({
@@ -29,7 +30,9 @@ function Dashboard({
   startAdd,
   cancelEdit,
   cancelAdd,
+  onModeChange,
 }: DashboardProps) {
+
   const handleDelete = (id: string) => {
     if (confirm("¿Eliminar esta tarjeta?")) {
       removeFlashcard(id);
@@ -41,23 +44,11 @@ function Dashboard({
       <header>
         <h1>Dashboard</h1>
         <h2>Flashcards</h2>
+        <button onClick={()=> onModeChange(true)}>Study Mode</button>
         <ProgressBar flashcards={flashcards} />
       </header>
 
-      <div className="flashcards-container">
-        {flashcards.map((flashcard) => (
-          <Flashcard
-            key={flashcard.id}
-            {...flashcard}
-            onEdit={startEdit}
-            onDelete={handleDelete}
-          />
-        ))}
-
-        <div className="flashcards-add-button flashcard" onClick={startAdd}>
-          +
-        </div>
-      </div>
+      <FilterFlashcard flashcards={flashcards} onEdit={startEdit} onDelete={handleDelete} onAdd={startAdd} />
 
       {editingFlashcard && (
         <FlashcardForm

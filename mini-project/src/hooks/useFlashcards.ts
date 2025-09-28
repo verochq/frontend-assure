@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FlashcardType, FlashcardData } from "../types/types";
+import { loadFlashcards, saveFlashcards, saveProgress } from "../data/data";
+
+
+
+
 
 function useFlashcards(initialFlashcards: FlashcardType[]) {
+  // obteniendo datos de localStorage
   //Lista de tarjetas
-  const [flashcards, setFlashcards] =
-    useState<FlashcardType[]>(initialFlashcards);
+  const [flashcards, setFlashcards] = useState<FlashcardType[]>(() => {
+    const saved = loadFlashcards();
+    return saved && Array.isArray(saved) ? saved : initialFlashcards;
+  });
 
   // estamos editando una tarjeta?
   const [editingFlashcard, setEditingFlashcard] =
@@ -12,6 +20,12 @@ function useFlashcards(initialFlashcards: FlashcardType[]) {
 
   // estamos agregando una tarjeta
   const [isAdding, setIsAdding] = useState(false);
+
+  useEffect(() => {
+    saveFlashcards(flashcards);
+    const learnedCount = flashcards.filter((flashcard) => flashcard.isLearned).length;
+    saveProgress(learnedCount);
+  }, [flashcards]);
 
   //Crear una tarjeta
   const createFlashcard = (data: FlashcardData) => {
@@ -53,7 +67,9 @@ function useFlashcards(initialFlashcards: FlashcardType[]) {
   // UPDATE LEARNED
   const updateLearned = (id: string, hasLearned: boolean) => {
     setFlashcards((prev) =>
-      prev.map((card) => (card.id === id ? { ...card, isLearned: hasLearned } : card))
+      prev.map((card) =>
+        card.id === id ? { ...card, isLearned: hasLearned } : card
+      )
     );
   };
 
@@ -70,6 +86,9 @@ function useFlashcards(initialFlashcards: FlashcardType[]) {
     setIsAdding(false);
   };
 
+  
+
+  
 
   return {
     flashcards,
