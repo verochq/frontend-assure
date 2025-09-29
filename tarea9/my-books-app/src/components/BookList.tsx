@@ -1,13 +1,11 @@
-import { use, useState } from "react";
 import type { Book } from "../types/Books";
-import { Link, NavLink } from "react-router";
+import { Link} from "react-router";
 
 type Books = {
   books: Book[]
 }
 
 function BookList({books}: Books) {
-  const [bookss, setBooks] = useState<Book[]>(books);
   
 
   return (
@@ -15,12 +13,12 @@ function BookList({books}: Books) {
       <h1>Books</h1>
       
 
-      {bookss?.map((book: Book) => (
+      {books?.map((book: Book) => (
         <div key={book.id}> 
           <p>{book.title}</p>
           <p>{book.author}</p>
           <p>{book.description}</p>
-          <Link to={`/books/1`}>
+          <Link to={`/books/${book.id}`}>
             Details
           </Link>
         </div>

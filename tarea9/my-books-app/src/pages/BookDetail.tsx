@@ -1,18 +1,26 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { books } from "../data/books";
+import { useEffect } from "react";
 
 function BookDetail() {
-  let params = useParams();
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
- const isBook = books.some((book)=>{return book.id == params.id});
- const book = books.find((book)=>{return book.id === "1"});
+  const book = books.find((b) => b.id === id);
+
+  useEffect(() => {
+    if (!book) {
+      navigate("/404");
+    }
+  }, [book, navigate]);
+ 
 
   return (
     <div>
       <h1>Book Detail</h1>
-      {isBook ? <p>{book?.title}</p> : <p>Not found</p>}
+      {book ? <p>{book?.title}</p> : <p>Not found</p>}
     </div>
-  )
+  );
 }
 
 export default BookDetail;
