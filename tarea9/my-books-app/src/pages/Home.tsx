@@ -7,7 +7,7 @@ function Home() {
       <p>Welcome </p>
       <NavLink to="/books">
         Go to books
-    </NavLink>
+      </NavLink>
     </>
   );
 }
