@@ -6,3 +6,8 @@
 .flashcards-add-button {
   font-size: 10vh;
 }
+
+.dashboard-header{
+  display: flex;
+}
+

@@ -20,7 +20,7 @@ type DashboardProps = {
 };
 
 function Dashboard({
-  flashcards,
+  flashcards, 
   editingFlashcard,
   isAdding,
   createFlashcard,
@@ -44,8 +44,11 @@ function Dashboard({
       <header>
         <h1>Dashboard</h1>
         <h2>Flashcards</h2>
-        <button onClick={()=> onModeChange(true)}>Study Mode</button>
-        <ProgressBar flashcards={flashcards} />
+        <div className="dashboard-header">
+          <ProgressBar flashcards={flashcards} />
+          <button onClick={()=> onModeChange(true)}>Study Mode</button>
+          
+        </div>      
       </header>
 
       <FilterFlashcard flashcards={flashcards} onEdit={startEdit} onDelete={handleDelete} onAdd={startAdd} />

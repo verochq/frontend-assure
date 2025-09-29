@@ -18,7 +18,7 @@ function useFlashcards(initialFlashcards: FlashcardType[]) {
   const [editingFlashcard, setEditingFlashcard] =
     useState<FlashcardType | null>(null);
 
-  // estamos agregando una tarjeta
+  // estamos agregando una tarjeta?
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
