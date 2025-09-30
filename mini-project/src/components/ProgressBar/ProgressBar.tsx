@@ -9,12 +9,12 @@ type ProgressBarProps = {
 
 function ProgressBar({ flashcards }: ProgressBarProps) {
 
-  const [learnedCount, setLearnedCount] = useState(loadProgress());
+  const [learnedCount, setLearnedCount] = useState<number>(0);
 
   useEffect(()=>{
     const fetch = async() => {
       const data = await loadProgress();
-      console.log(data)
+      console.log(typeof data);
       setLearnedCount(data);
     }
 

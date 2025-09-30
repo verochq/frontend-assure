@@ -4,13 +4,12 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import Flashcard from "../Flashcard/Flashcard";
 import "./studymode.css";
 import "../Flashcard/flashcard.css";
+import { loadProgress } from "../../data/data";
 
 type StudyModeProps = {
   flashcards: FlashcardType[];
   updateLearned: (id: string, hasLearned: boolean) => void;
   onModeChange: (studyMode: boolean) => void;
-  progress: number,
-  setProgress: (progress: number) => void;
 };
 
 function StudyMode({
@@ -57,7 +56,7 @@ function StudyMode({
       <header>
         <h1>Study Mode</h1>
         <div className="study-mode-container">
-          <ProgressBar flashcards={allFlashcards} />
+          <ProgressBar flashcards={allFlashcards}/>
           <button
             className="shuffle-button"
             onClick={shuffle}
