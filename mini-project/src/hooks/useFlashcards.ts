@@ -7,14 +7,13 @@ import { loadFlashcards, saveFlashcards, saveProgress } from "../data/data";
 
 
 function useFlashcards(initialFlashcards: FlashcardType[]) {
-  // obteniendo datos de localStorage
   //Lista de tarjetas
   const [flashcards, setFlashcards] = useState<FlashcardType[]>(() => {
     const saved = loadFlashcards();
     return saved && Array.isArray(saved) ? saved : initialFlashcards;
   });
 
-
+  //localstorage
   useEffect(() => {
     saveFlashcards(flashcards);
     const learnedCount = flashcards.filter((flashcard) => flashcard.isLearned).length;

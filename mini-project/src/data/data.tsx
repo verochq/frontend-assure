@@ -25,6 +25,8 @@ export const initialFlashcards: FlashcardType[] = [
 ];
 
 const FLASHCARDS_STORAGE_KEY = "flashcards_data";
+const PROGRESS_STORAGE_KEY = "progress_data";
+
 
 export const saveFlashcards = (flashcards: FlashcardType[]) => {
   try {
@@ -45,12 +47,21 @@ export const loadFlashcards = (): FlashcardType[] | null => {
 };
 
 //SAVED PROGRESS
-const PROGRESS_STORAGE_KEY = "progress_data";
 
 export const saveProgress = (progress: number) => {
   try {
     localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress));
   } catch (error) {
     console.error("No se pudo guardar el progreso:", error);
+  }
+};
+
+export const loadProgress = (): number => {
+  try {
+    const data = localStorage.getItem(PROGRESS_STORAGE_KEY);
+    return data ? JSON.parse(data) : 0;
+  } catch (error) {
+    console.error("No se pudo cargar progress:", error);
+    return 0;
   }
 };
