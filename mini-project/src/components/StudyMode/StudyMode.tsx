@@ -4,7 +4,6 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import Flashcard from "../Flashcard/Flashcard";
 import "./studymode.css";
 import "../Flashcard/flashcard.css";
-import { loadProgress } from "../../data/data";
 
 type StudyModeProps = {
   flashcards: FlashcardType[];
@@ -43,9 +42,9 @@ function StudyMode({
     setHasStarted(true);
     if (!currentFlashcard || isFinished) return;
     updateLearned(currentFlashcard.id, hasLearned);
+    
     if (currentIndex >= shuffledFlashcards.length - 1) {
       setIsFinished(true);
-      console.log("FINISHED");
     } else {
       setCurrentIndex(currentIndex + 1);
     }
@@ -57,13 +56,14 @@ function StudyMode({
         <h1>Study Mode</h1>
         <div className="study-mode-container">
           <ProgressBar flashcards={allFlashcards}/>
-          <button
+          {!hasStarted ? <button
             className="shuffle-button"
             onClick={shuffle}
             disabled={hasStarted}
-          >
+          > 
             Shuffle
           </button>
+          : ""}
         </div>
       </header>
 

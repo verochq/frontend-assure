@@ -56,9 +56,9 @@ export const saveProgress = (progress: number) => {
   }
 };
 
-export const loadProgress = async (): Promise<number> => {
+export const loadProgress = (): number => {
   try {
-    const data = await localStorage.getItem(PROGRESS_STORAGE_KEY);
+    const data =  localStorage.getItem(PROGRESS_STORAGE_KEY);
     return data ? JSON.parse(data) : 0;
   } catch (error) {
     console.error("No se pudo cargar progress:", error);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { FlashcardType, FlashcardData } from "../types/types";
-import { loadFlashcards, saveFlashcards, saveProgress, loadProgress } from "../data/data";
+import { loadFlashcards, saveFlashcards, saveProgress } from "../data/data";
 
 
 
@@ -87,6 +87,8 @@ function useFlashcards(initialFlashcards: FlashcardType[]) {
         card.id === id ? { ...card, isLearned: hasLearned } : card
       )
     );
+    const learnedCount = flashcards.filter((flashcard) => flashcard.isLearned).length;
+    saveProgress(learnedCount);
   };
 
   // Acciones de mostrado

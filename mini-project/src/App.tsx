@@ -21,8 +21,6 @@ function App() {
   
   return (
     <>
-      {/* <AddFlashcard/> */}
-      {/* <Flashcard/> */}
       {onStudyMode ? <StudyMode {...flashcardsData} onModeChange={handleModeChange}/> : <Dashboard {...flashcardsData} onModeChange={handleModeChange} />}
     </>
   )

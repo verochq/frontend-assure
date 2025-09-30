@@ -18,7 +18,7 @@ function FlashcardForm({
       setAnswer(initialData.answer);
       setTopic(initialData.topic);
     }
-  }, [initialData]);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
