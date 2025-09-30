@@ -1,0 +1,27 @@
+.filter-header{
+  display: flex;
+  align-items: center;
+  padding-left: 4vw;
+  margin: 0;
+  width: 60%;
+  gap: 1rem;
+}
+
+.filter-controls{
+  width: 25%;
+}
+
+.filter-topic{
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid rgb(203, 222, 225);
+  box-sizing: border-box;
+}
+
+.search-input{
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid rgb(203, 222, 225);
+  box-sizing: border-box;
+  
+}

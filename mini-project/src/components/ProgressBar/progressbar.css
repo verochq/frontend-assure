@@ -1,0 +1,16 @@
+.progress-bar-container{
+  padding-left: 3vw;
+  height: 7vh;
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar{
+  width: 15vw;
+  height: 5vh;
+  accent-color: rgb(96, 164, 187);
+}
+
+.progress-bar-text{
+  margin-left: 2vw;
+}

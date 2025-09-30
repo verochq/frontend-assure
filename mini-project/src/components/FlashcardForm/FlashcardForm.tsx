@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import "../addflashcard.css";
-import type { FlashcardFormProps } from "../types/types";
-import { TOPICS } from "../data/topics";
+import "./flashcardform.css";
+import type { FlashcardFormProps } from "../../types/types";
+import { TOPICS } from "../../data/topics";
 
 function FlashcardForm({
   initialData,

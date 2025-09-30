@@ -12,7 +12,6 @@ function App() {
         <Route path="/books" element={<Books />} />
         <Route path="/books/:id" element={<BookDetail />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/404" element={<NotFound />} />
       </Routes>
     </>
   )

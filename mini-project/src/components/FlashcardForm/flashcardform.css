@@ -1,15 +1,15 @@
 .addCardForm {
-    width: 90vw;
-    max-width: 400px;
-    margin: 0 auto;
-    top: 25%;
-    left: 25%;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    background-color: rgb(255, 255, 255);
-    position: fixed;
-    z-index: 10;
+  width: 80vw;
+  max-width: 400px;
+  margin: 0 auto;
+  top: 25%;
+  left: 25%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 14px 22px rgba(9, 98, 113, 0.1);
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  z-index: 10;
 }
 
 .fieldCardForm label {
@@ -23,24 +23,24 @@
   font-size: 1.2rem;
   padding: 0 10px;
   margin-bottom: 16px;
-  color: #000000;
+  color:rgb(28, 45, 48);
 }
 
 .fieldCardForm {
-    width: 90%;
-    height: 50%;
-    padding: 20px;
-  border: 2px solid #666869;
-    display: flex;
-    border-radius: 10px;
-    flex-direction: column;
+  width: 90%;
+  height: 50%;
+  padding: 20px;
+  border: 0.1px solid rgb(203, 222, 225);
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
 }
 
 .fieldCardForm input,
 .fieldCardForm select {
   width: 100%;
   padding: 10px;
-  border: 1px solid #555454;
+  border: 0.1px solid rgb(203, 222, 225);
   border-radius: 6px;
   box-sizing: border-box;
   font-size: 1rem;
@@ -49,6 +49,7 @@
 .fieldCardForm button {
   margin-top: 20px;
   padding: 10px 20px;
+  border: 0.1px solid rgb(203, 222, 225);
   background-color: #9bc8d2;
   border-radius: 6px;
   cursor: pointer;
@@ -58,5 +59,3 @@
 .fieldCardForm button:hover {
   background-color: #7aa7c0;
 }
-
-

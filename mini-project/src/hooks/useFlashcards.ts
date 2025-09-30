@@ -14,18 +14,34 @@ function useFlashcards(initialFlashcards: FlashcardType[]) {
     return saved && Array.isArray(saved) ? saved : initialFlashcards;
   });
 
-  // estamos editando una tarjeta?
-  const [editingFlashcard, setEditingFlashcard] =
-    useState<FlashcardType | null>(null);
-
-  // estamos agregando una tarjeta?
-  const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     saveFlashcards(flashcards);
     const learnedCount = flashcards.filter((flashcard) => flashcard.isLearned).length;
     saveProgress(learnedCount);
   }, [flashcards]);
+
+  // estamos editando una tarjeta?
+  const [editingFlashcard, setEditingFlashcard] =
+  useState<FlashcardType | null>(null);
+  
+  // estamos agregando una tarjeta?
+  const [isAdding, setIsAdding] = useState(false);
+
+  //Filtrado
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState("all");
+
+  const filteredFlashcards = flashcards.filter((f) => {
+    if (selectedTopic !== "all" && f.topic !== selectedTopic) return false;
+    const text = searchTerm.toLowerCase();
+    return (
+      f.question.toLowerCase().includes(text) ||
+      f.answer.toLowerCase().includes(text)
+    );
+  });
+  
+
 
   //Crear una tarjeta
   const createFlashcard = (data: FlashcardData) => {
@@ -92,6 +108,11 @@ function useFlashcards(initialFlashcards: FlashcardType[]) {
 
   return {
     flashcards,
+    filteredFlashcards,
+    searchTerm,
+    setSearchTerm,
+    selectedTopic,
+    setSelectedTopic,
     editingFlashcard,
     isAdding,
     createFlashcard,

@@ -1,6 +1,7 @@
-import "../flashcard.css";
+import "./flashcard.css";
 import { useState } from "react";
-import type { FlashcardProps } from "../types/types";
+import type { FlashcardProps } from "../../types/types";
+import { TOPICS } from "../../data/topics";
 
 function Flashcard({
   id,
@@ -13,6 +14,10 @@ function Flashcard({
 }: FlashcardProps) {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [isAnswerShow, setIsAnswerShow] = useState(false);
+
+  const topic_color = TOPICS.find((t) => {
+    return topic === t.name;
+  });
 
   const toggleOptions = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -47,20 +52,27 @@ function Flashcard({
         }`}
         onClick={handleClickCard}
       >
-
         <button className="flashcard__options" onClick={toggleOptions}>
           ...
         </button>
 
         {isOptionsOpen && (
           <div className="flashcard__options flashcard__options--content">
-            <button onClick={handleEdit}>Edit</button>
+            <button  onClick={handleEdit}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
           </div>
         )}
         <p className="flashcard__contain">{content}</p>
-        <p className="flashcard__topic">{topic}</p>
-        <p className="flashcard__isLearned">{learned}</p>
+
+        <div className="flashcard_end">
+          <p
+            className="flashcard__topic"
+            style={{ backgroundColor: topic_color?.color }}
+          >
+            {topic}
+          </p>
+          <p className="flashcard__isLearned">{learned}</p>
+        </div>
       </div>
     </>
   );

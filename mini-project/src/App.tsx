@@ -1,8 +1,8 @@
 //import Dashboard from './components/Dashboard'
 
 import { useState } from "react";
-import Dashboard from "./components/Dashboard";
-import StudyMode from "./components/StudyMode"
+import Dashboard from "./components/Dashboard/Dashboard";
+import StudyMode from "./components/StudyMode/StudyMode"
 import { initialFlashcards } from "./data/data";
 import useFlashcards from "./hooks/useFlashcards";
 
