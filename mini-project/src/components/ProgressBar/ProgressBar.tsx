@@ -1,7 +1,7 @@
 import "./progressbar.css";
 import type { FlashcardType } from "../../types/types";
 import { loadProgress } from "../../data/data";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type ProgressBarProps = {
   flashcards: FlashcardType[];
@@ -9,13 +9,16 @@ type ProgressBarProps = {
 
 function ProgressBar({ flashcards }: ProgressBarProps) {
 
-  const [learnedCount, setLearnedCount] = useState(
-    loadProgress()
-  );
+  const [learnedCount, setLearnedCount] = useState(loadProgress());
 
   useEffect(()=>{
-    setLearnedCount(loadProgress());
-    console.log("Cargado",loadProgress());
+    const fetch = async() => {
+      const data = await loadProgress();
+      console.log(data)
+      setLearnedCount(data);
+    }
+
+    fetch().catch(console.error)
   }, [flashcards])
   const totalCount = flashcards.length;
 

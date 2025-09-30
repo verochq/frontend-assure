@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { FlashcardType, FlashcardData } from "../types/types";
-import { loadFlashcards, saveFlashcards, saveProgress } from "../data/data";
+import { loadFlashcards, saveFlashcards, saveProgress, loadProgress } from "../data/data";
 
 
 
@@ -12,6 +12,7 @@ function useFlashcards(initialFlashcards: FlashcardType[]) {
     const saved = loadFlashcards();
     return saved && Array.isArray(saved) ? saved : initialFlashcards;
   });
+
 
   //localstorage
   useEffect(() => {
@@ -100,10 +101,6 @@ function useFlashcards(initialFlashcards: FlashcardType[]) {
   const cancelAdd = () => {
     setIsAdding(false);
   };
-
-  
-
-  
 
   return {
     flashcards,

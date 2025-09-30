@@ -9,12 +9,14 @@ type StudyModeProps = {
   flashcards: FlashcardType[];
   updateLearned: (id: string, hasLearned: boolean) => void;
   onModeChange: (studyMode: boolean) => void;
+  progress: number,
+  setProgress: (progress: number) => void;
 };
 
 function StudyMode({
   flashcards: allFlashcards,
   updateLearned,
-  onModeChange,
+  onModeChange
 }: StudyModeProps) {
   const [shuffledFlashcards, setShuffledFlashcards] = useState<FlashcardType[]>(
     []
