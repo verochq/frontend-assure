@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import StepContent from "./components/StepContent";
+import StepContent from "./StepContent";
 import { useState, useEffect } from "react";
-import type { FormValues } from "./types/form-values";
+import type { FormValues } from "../../types/types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { fullSchema, stepFields } from "./validationSchemas";
+import { fullSchema, stepFields } from "../../schemas/Exercise1"
 
 const STORAGE_KEY = "multiStepForm";
 
@@ -55,7 +55,7 @@ const multiStepForm = () => {
 
  
   const onSubmit = (data: FormValues) => {
-    console.log("Formulario enviado ✅", data);
+    console.log("Formulario enviado", data);
     localStorage.removeItem(STORAGE_KEY); // limpiar storage después de enviar
     alert("Form submitted successfully!");
   };
