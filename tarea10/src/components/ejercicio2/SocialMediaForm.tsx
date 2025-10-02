@@ -18,7 +18,7 @@ const isValidUrl = (str: string): boolean => {
   const trimmed = str.trim();
   if (!trimmed) return false;
 
-  const URL_REGEX = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
+  const URL_REGEX = /^https:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/\S*)?$/;
   return URL_REGEX.test(trimmed);
 };
 
@@ -96,7 +96,7 @@ const SocialMediaForm = () => {
               render={({ field }) => (
                 <input
                   {...field}
-                  placeholder="ej: github.com/usuario"
+                  placeholder="ej: https://www.w3schools.com"
                   className="url-input"
                 />
               )}

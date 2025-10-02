@@ -7,7 +7,7 @@ import { fullSchema, stepFields } from "../../schemas/Exercise1"
 
 const STORAGE_KEY = "multiStepForm";
 
-const multiStepForm = () => {
+const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
   // Cargar valores guardados si existen
@@ -42,7 +42,8 @@ const multiStepForm = () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(watchedValues));
   }, [watchedValues]);
 
-  const handleNext = async () => {
+  const handleNext = async (e: React.MouseEvent) => {
+    e.preventDefault();
     const valid = await trigger(stepFields[currentStep]); 
     if (valid) {
       setCurrentStep((prev) => prev + 1);
@@ -71,7 +72,6 @@ const multiStepForm = () => {
         />
 
         <div style={{ marginTop: "1rem" }}>
-          {/* Back no aparece en el primer paso */}
           {currentStep > 1 && (
             <button type="button" onClick={handleBack}>
               Back
@@ -92,4 +92,4 @@ const multiStepForm = () => {
   );
 };
 
-export default multiStepForm;
+export default MultiStepForm;

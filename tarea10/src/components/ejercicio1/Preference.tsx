@@ -9,7 +9,6 @@ interface PreferenceProps {
 const Preference = ({ control, errors }: PreferenceProps) => {
   return (
     <>
-      {/* Radio buttons */}
       <label>Preferred Contact Method: </label>
       <Controller
         control={control}
@@ -49,7 +48,6 @@ const Preference = ({ control, errors }: PreferenceProps) => {
         <p>{errors.preferredContactMethod.message}</p>
       )}
 
-      {/* Checkbox */}
       <div>
         <Controller
           control={control}

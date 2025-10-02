@@ -13,7 +13,6 @@ export default function RatingForm(): JSX.Element {
   const [submitted, setSubmitted] = useState<FormValuesFormik | null>(null);
 
   const stars = [1, 2, 3, 4, 5];
-
   return (
     <div className="form-container">
       <h2>Formulario de valoración</h2>
@@ -51,8 +50,10 @@ export default function RatingForm(): JSX.Element {
             <div>
               <span className="Form-rating__rating-label">Calificación</span>
               <div className="Form-rating__rating-stars">
+                
                 {stars.map((s) => {
                   const filled = (values.rating ?? 0) >= s;
+                  
                   return (
                     <button
                       key={s}
@@ -63,10 +64,7 @@ export default function RatingForm(): JSX.Element {
                           setFieldValue("message", "");
                         }
                       }}
-                      aria-label={`Calificar ${s} estrella${s > 1 ? "s" : ""}`}
-                      className={`Form-rating__rating-star--star ${
-                        filled ? "" : "opacity-50"
-                      }`}
+                      className={`Form-rating__rating-star--star`}
                     >
                       {filled ? "★" : "☆"}
                     </button>

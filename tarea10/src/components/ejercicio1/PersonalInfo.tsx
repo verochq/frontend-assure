@@ -24,6 +24,7 @@ const PersonalInfo = ({ control, errors }: PersonalInfoProps) => {
         name="age"
         label="Age"
         type="number"
+        placeholder="Please enter your age"
       />
       <CustomInput
         control={control}
