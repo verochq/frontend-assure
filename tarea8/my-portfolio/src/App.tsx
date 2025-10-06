@@ -1,15 +1,20 @@
+import { useState } from 'react'
 import './App.css'
-import ColorSwitch from './components/ColorSwitch'
-import DisplaySize from './components/DisplaySize'
-import ValidatingInputs from './components/ValidatingInputs'
+import Toogle from './components/Toggle'
+import { ThemeContext } from './context/ThemeContext';
 
 function App() {
 
+  const [theme, setTheme] = useState('light');
   return (
     <>
-      <ColorSwitch />
+      {/* <ColorSwitch />
       <DisplaySize />
-      <ValidatingInputs />
+      <ValidatingInputs /> */}
+
+      <ThemeContext value={{theme: theme, setTheme: setTheme}}>
+        <Toogle/>
+      </ThemeContext>
     </>
   )
 }

@@ -5,7 +5,7 @@ export default function TriggerButton() {
   const {showNotification} = useContext(NotifyContext);
 
   const handleClick = () => {
-    showNotification("Mensaje customificado, buenas tarde", "success")
+    showNotification("Mensaje customificado, buenas tarde", "other")
   }
   return (
     <button onClick={handleClick}>

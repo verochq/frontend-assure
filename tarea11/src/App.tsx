@@ -1,5 +1,5 @@
 import Notification from './components/Notification'
-import NotificationProvider from './components/NotificationProvider'
+import NotificationProvider from './provider/NotificationProvider'
 import TriggerButton from './components/TriggerButton'
 import TriggerButtonNav from './components/TriggerButtonNav'
 
@@ -13,7 +13,9 @@ function App() {
         
         <header>
           <h1> Use context practica</h1>
-          <TriggerButtonNav/>
+          <nav>
+              <TriggerButtonNav/>
+          </nav>
         </header>
 
         <main>

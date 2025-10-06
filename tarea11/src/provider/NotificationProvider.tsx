@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { NotifyContext, type notificationProps } from "../context/Notify";
 
 interface NotificationProviderProps {
-  children: ReactNode;
+  children: ReactNode[];
 }
 
 export default function NotificationProvider({
